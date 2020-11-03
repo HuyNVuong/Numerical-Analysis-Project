@@ -4,6 +4,7 @@
 import os
 import sys
 from numerical_integration import left_right_sum, trapezoid_sum, trapezoid_sum_error, simpson_18rule
+from accounting import build_netincome_function
 
 # %%
 f = lambda x: x ** 2
@@ -22,6 +23,10 @@ print(epsilon)
 simpsons = simpson_18rule(f, (2, 3), 6)
 print(simpsons)
 
-
+# %%
+A = lambda t : 10000 * t
+f = build_netincome_function(A, 0.05)
+net_income = trapezoid_sum(f, (0, 10), 100)
+print(net_income)
 
 # %%
