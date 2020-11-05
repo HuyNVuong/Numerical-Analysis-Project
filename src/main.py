@@ -24,7 +24,8 @@ simpsons = simpson_18rule(f, (2, 3), 6)
 print(simpsons)
 
 # %%
-A = lambda t : 10000 * t
+A = lambda t : 10000 * t - 3000
+print('Income stream function 10000 * t - 3000')
 f = build_netincome_function(A, 0.05)
 net_income = trapezoid_sum(f, (0, 10), 100)
 print(net_income)
