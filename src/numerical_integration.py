@@ -29,7 +29,6 @@ def simpson_18rule(f: Callable[[float], float],
                    n_subintervals: int) -> float:
     a, b = interval
     h = (b - a) / n_subintervals
-    print(h)
 
     spline = 2 * sum(f(a + 2 * k * h) for k in range(1, int((n_subintervals - 2) / 2) + 1)) \
            + 4 * sum(f(a + (2 * k - 1) * h) for k in range(1, int(n_subintervals / 2) + 1))
@@ -43,22 +42,20 @@ def simpson_38rule(f: Callable[[float], float],
 
     pass
 
-def trapezoid_sum_error(f: Callable[[float], float],
-                        f_derived: Callable[[float], float],
+def trapezoid_sum_error(f_derived: Callable[[float], float],
                         interval: Tuple[int, int],
                         n_subintervals: int) -> float:
     a, b = interval
-    xi, _ = find_max(f, interval)
+    xi, _ = find_max(f_derived, interval)
     error =  -1 * (b - a) ** 3 / (12 * n_subintervals ** 2) * f_derived(xi)
 
     return error
 
-def simpson18_error(f: Callable[[float], float],
-                    f_derived: Callable[[float], float],
+def simpson18_error(f_derived: Callable[[float], float],
                     interval: Tuple[int, int],
                     n_subintervals: int) -> float:
     a, b = interval
-    xi, _ = find_max(f, interval)
+    xi, _ = find_max(f_derived, interval)
     h = (b - a) / n_subintervals
     error =  1 / 180 * (b - a) * h ** 4 * f_derived(xi)
 
